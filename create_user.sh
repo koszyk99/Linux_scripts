@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# create user login
-read -p "Add login for new user: " newuser
 
-# check whether variable isn't empty
-if [ -n "$newuser" ]; then
-    echo "Your login is: ${newuser}."
-else
-    echo "You didn't provide login."
-    exit 1
-fi
+# create user login and checks whether a login was has been provided
+read -p "Add login for new user: " newuser
+    if [ -n "$newuser" ]; then
+        if id "$newuser" &>/dev/null; then # check if the user already exist
+            echo "User exist!"
+        exit 1
+    else
+         echo "User does not exist."
+    fi
+        echo "Your login is: ${newuser}."
+    else
+        echo "You didn't provide login."
+        exit 1
+    fi
 
 # create user password
 read -s -p "Add password for ${newuser}: " password
