@@ -12,7 +12,7 @@ pause(){
     read -p "Press ENTER to continue..."
 }
 
-show_menu (){
+show_menu(){
     clear
     echo -e "${BLUE}$(date)${RESET_COLOR}"
     echo "==============================="
@@ -48,7 +48,7 @@ ram(){
 
 network(){
     echo -e "${YELLOW}Network:${RESET_COLOR}"
-    ip addr show
+    ip -brief addr
 }
 
 system_operation_time(){
@@ -58,14 +58,14 @@ system_operation_time(){
 
 exit_program(){
     echo -e "${YELLOW}Exit${RESET_COLOR}"
-    exit
+    exit 0
 }
 
 while true; do
     show_menu
     read -p "Select your choice [ 1 - 7 ]: " choice
 
-    case $choice in
+    case "$choice" in
         1) system_info ;;
         2) host_name ;;
         3) disk_usage ;;
