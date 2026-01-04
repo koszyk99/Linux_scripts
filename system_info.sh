@@ -1,20 +1,31 @@
 #!/bin/bash
 
-# colors
+# Script name : system_info.sh
+# Description : Interactive Bash menu for displaying basic Linux system information
+#              such as system details, hostname, disk usage, memory, network
+#              , configuration and system uptime.
+#
+# Author      : Krzysztof Koszyk
+# Created     : 04.01.2026
+# Usage       : ./system_info.sh
+#
+
+# Colors
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 BLUE="\e[34m"
 RESET_COLOR="\e[0m"
 
-# pause function
+# Pause function that execution until user presses ENTER
 pause(){
     read -p "Press ENTER to continue..."
 }
 
+# Display main menu with available system information option
 show_menu(){
-    clear
-    echo -e "${BLUE}$(date)${RESET_COLOR}"
+    clear                                                   # Clear terminal screen
+    echo -e "${BLUE}$(date)${RESET_COLOR}"                  # Display current date
     echo "==============================="
     echo -e "${GREEN}1.${RESET_COLOR} System info"
     echo -e "${GREEN}2.${RESET_COLOR} Host name"
@@ -26,6 +37,7 @@ show_menu(){
     echo "==============================="
 }
 
+# Display detailed system information (kernel, architecture, OS)
 system_info(){
     echo -e "${YELLOW}System:$RESET_COLOR"
     uname -a
@@ -36,16 +48,19 @@ host_name(){
     hostname
 }
 
+# Display disk usage for root filesystem
 disk_usage(){
     echo -e "${YELLOW}Disk usage:${RESET_COLOR}"
     df -h /
 }
 
+# Display memory usage (RAM and swap) in megabytes
 ram(){
     echo -e "${YELLOW}RAM information:${RESET_COLOR}"
     free -m
 }
 
+# Display IP addresses
 network(){
     echo -e "${YELLOW}Network:${RESET_COLOR}"
     ip -brief addr
@@ -61,8 +76,12 @@ exit_program(){
     exit 0
 }
 
+# Main program loop
+# Continuously display menu and execute selected option
 while true; do
     show_menu
+
+    # Read user input
     read -p "Select your choice [ 1 - 7 ]: " choice
 
     case "$choice" in
