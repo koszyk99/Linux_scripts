@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Work in progress...
 
 # create user login
 read -p "Add login for new user: " newuser
