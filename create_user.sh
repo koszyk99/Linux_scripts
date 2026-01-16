@@ -17,9 +17,9 @@ read -p "Add login for new user: " newuser
 
 # create user password
 read -s -p "Add password for ${newuser}: " password
-    if [ -n "$password" ]; then  # check whether variable isn't empty
-        echo "Your password is: ${password}"
-    else
+echo
+
+    if [ -z "$password" ]; then  # check whether variable isn't empty
         echo "You didn't provide password."
         exit 1
     fi
