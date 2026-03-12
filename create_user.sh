@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# checking if the script is run as root
+# Checking if the script is run as root
 if [ "$EUID" -ne 0 ]; then                      # root UID = 0, if UID doesn't equal 0 then exit
     echo "Run as a root."
     exit 1
 fi
 
-# create user login
+# Create user login
 read -p "Add login for new user: " newuser
 
 if [ -z "$newuser" ]; then              # checks whether a login was has been provided, -z means "whether variable is empty"
@@ -14,16 +14,16 @@ if [ -z "$newuser" ]; then              # checks whether a login was has been pr
     exit 1                                      # end script if something gone wrong
 fi
 
-# whether a user with the given name already exists
+# Whether a user with the given name already exists
 if id "$newuser" &>/dev/null; then
     echo "This user already exist!"
     exit 1
 fi
 
-# confirm user name
+# Confirm user name
 echo "Your login is: $newuser"
 
-# create user password
+# Create user password
 read -s -p "Add password for ${newuser}: " password
 echo
 
@@ -32,7 +32,7 @@ if [ -z "$password" ]; then                             # check whether variable
     exit 1
 fi
 
-# check password for validity
+# Check password for validity
 max_attempt=3
 attempt=1
 
