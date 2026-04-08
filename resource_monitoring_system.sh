@@ -5,6 +5,8 @@ ram_usage() {
     free -m | grep Mem | awk '{print $3/$2 * 100}' | cut -d. -f1
 }
 
+echo "Current RAM usage $(ram_usage)%"
+
 while true; do
 
     usage=$(ram_usage)
@@ -14,4 +16,5 @@ while true; do
     fi
 
     sleep 5
+
 done
