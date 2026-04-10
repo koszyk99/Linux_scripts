@@ -20,7 +20,7 @@ echo "Monitoring started... (Press Ctrl+C to stop)"
 while true; do
 
     usage=$(ram_usage)
-
+                    # variable val
     monitoring_system "$usage"
 
     if [ "$usage" -gt 80 ]; then
