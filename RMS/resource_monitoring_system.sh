@@ -15,6 +15,10 @@ monitoring_system() {
     echo "$timestamp - Memory: $val%" >> "$LOG_FILE"
 }
 
+cpu_usage() {
+    ps -eo pid,comm,%mem --sort=-%mem | head -n 10
+}
+
 echo "Monitoring started... (Press Ctrl+C to stop)"
 
 while true; do
@@ -24,7 +28,10 @@ while true; do
     monitoring_system "$usage"
 
     if [ "$usage" -gt 80 ]; then
-        echo "Low RAM! Current usage: $usage%"
+        echo "--- ALERT: Low RAM! Current usage: $usage% ---"
+        echo "Top memory consuming processes:"
+        cpu_usage
+        echo "----------------------------------------------"
     fi
 
     sleep 5
