@@ -15,6 +15,7 @@ monitoring_system() {
     echo "$timestamp - Memory: $val%" >> "$LOG_FILE"
 }
 
+# Get cpu usage, top 10
 cpu_usage() {
     ps -eo pid,comm,%mem --sort=-%mem | head -n 10
 }
